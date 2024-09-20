@@ -2,11 +2,12 @@ import { useEffect, useState } from 'react';
 import { TVShowAPI } from './api/tv-show';
 import { BACKDROP_BASE_URL } from './config';
 import { TVShowDetails } from './components/TVShowDetails/TVShowDetails';
-import { TVShowList } from './TVShowList/TVShowList';
+import { TVShowList } from './components/TVShowList/TVShowList';
 import { Logo } from './components/Logo/Logo';
 import logo from './assets/images/logo.png';
 import './global.css';
 import s from './style.module.css';
+import { SearchBar } from './components/SearchBar/SearchBar';
 
 
 export function App() {
@@ -34,8 +35,11 @@ export function App() {
     }, [currentTVShow]);
     // console.log('***', currentTVShow);
     // console.log('***', recommendationList);
-    function setCurrentTVShowFromRecommendation(tvShow) {
-        alert(JSON.stringify(tvShow));
+    async function searchTVShow(tvShowName) {
+        const searchResponse = await TVShowAPI.fetchByTitle(tvShowName);
+        if (searchResponse.length > 0) {
+            setCurrentTVShow(searchResponse[0]);
+        }
     };
     return (
         <main 
@@ -59,7 +63,7 @@ export function App() {
                         </div>
                     </div>
                     <div className='col-sm-12 col-md-4'>
-                        <input style={{width: "100%"}} type='text' />
+                        <SearchBar onSubmit={searchTVShow}/>
                     </div>
                 </div>
             </header>
@@ -71,7 +75,7 @@ export function App() {
             <section className={s.recommendations}>
                 {recommendationList 
                     && recommendationList.length > 0 
-                    && <TVShowList tvShowList={recommendationList} />
+                    && <TVShowList onClickItem={setCurrentTVShow} tvShowList={recommendationList} />
                 }
             </section>
         </main>

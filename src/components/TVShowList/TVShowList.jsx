@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
-import { TVShowListItem } from '../components/TVShowListItem/TVShowListItem';
+import { TVShowListItem } from '../TVShowListItem/TVShowListItem';
 import s from './style.module.css';
 
-export function TVShowList({ tvShowList }) {
+export function TVShowList({ tvShowList, onClickItem }) {
     // Scrollbar horizontal
     useEffect(() => {
         const listElement = document.querySelector(`.${s.list}`);
@@ -21,7 +21,7 @@ export function TVShowList({ tvShowList }) {
             {tvShowList.map((tvShow) => {
                 return (
                     <span key={tvShow.id} className={s.tv_show_list_item}>
-                        <TVShowListItem tvShow={tvShow} onClick={() => ''} />
+                        <TVShowListItem tvShow={tvShow} onClick={onClickItem} />
                     </span>
                 );
             })};
