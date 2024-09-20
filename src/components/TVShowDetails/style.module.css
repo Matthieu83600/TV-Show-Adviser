@@ -1,13 +1,15 @@
 .title {
+    color: gold;
     font-size: 35px;
     font-weight: 400;
 }
 .rating_container {
     display: flex;
+    padding-left: 20px;
 }
 .rating {
     margin-top: 3px;
-    margin-left: 5px;
+    margin-left: 8px;
 }
 .overview {
     font-family: Roboto;
@@ -16,6 +18,8 @@
     height: 120px;
     overflow-y: hidden;
     margin-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 .overview:hover {
     overflow-y: auto;

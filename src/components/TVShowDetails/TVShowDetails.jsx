@@ -13,4 +13,4 @@ export function TVShowDetails({ tvShow }) {
             <div className={s.overview}>{tvShow.overview}</div>
         </div>
     );
-}
+};

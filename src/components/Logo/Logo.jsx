@@ -7,7 +7,7 @@ export function Logo({ image, title, subtitle }) {
                 <img className={s.img} src={image} alt='logo'/>
                 <span className={s.title}>{title}</span>
             </div>
-            <span>{subtitle}</span>
+            <span className={s.subtitle}>{subtitle}</span>
         </>
-    )
-}
+    );
+};

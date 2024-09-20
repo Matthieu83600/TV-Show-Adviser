@@ -1,9 +1,9 @@
 import s from './style.module.css';
-import { StarFill, Star as StarEmpty, StarHalf, Star } from 'react-bootstrap-icons';
+import { StarFill, Star as StarEmpty, StarHalf } from 'react-bootstrap-icons';
 
 export function FiveStarRating({ rating }) {
     // Création d'un tableau d'étoiles vide
-    const starList = []
+    const starList = [];
     // Stockage variable nb étoile pleine
     const starFillCount = Math.floor(rating);
     // Stockage variable demi étoile (oui/non)
@@ -12,17 +12,17 @@ export function FiveStarRating({ rating }) {
     const emptyStarCount = 5 - starFillCount - (hasStarHalf ? 1 : 0);
     // Pusher étoile pleine
     for (let i = 1 ; i <= starFillCount ; i++) {
-        starList.push(<StarFill key={"star-fill" + i} />);
+        starList.push(<StarFill key={"star-fill" + i} className={s.star}/>);
     }
     // Pusher demi-étoile
     if(hasStarHalf) {
-        starList.push(<StarHalf key={"star-half"} />)
+        starList.push(<StarHalf key={"star-half"} className={s.star}/>);
     }
     // Pusher étoile vide
     for (let i = 1 ; i <= emptyStarCount ; i++) {
-        starList.push(<StarEmpty key={"star-empty" + i} />);
+        starList.push(<StarEmpty key={"star-empty" + i} className={s.star} />);
     }
     return (
         <div>{starList}</div>
-    )
-}
+    );
+};
